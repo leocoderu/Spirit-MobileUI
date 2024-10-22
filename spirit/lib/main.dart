@@ -9,11 +9,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 // Import Packages
 import 'package:spirit/fluro_router.dart';
 
-
 void main() {
-  //WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   MyFluroRouter.setupRouter();
-
   runApp(const MyApp());
 }
 
