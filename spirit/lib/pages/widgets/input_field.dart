@@ -48,8 +48,8 @@ class _InputFieldState extends State<InputField> {
   static const black100 = Color(0xFFF4F4F4);
   static const black200 = Color(0xFFC7C7C9);
   static const black300 = Color(0xFF908E93);
-  //static const black400 = Color(0xFF58565C);
-  //static const black500 = Color(0xFF201D26);
+  static const black400 = Color(0xFF58565C);
+  static const black500 = Color(0xFF201D26);
 
   final TextStyle labelStyle = TextStyle(color: black100, fontFamily: "Exo2", fontSize: 16.0,);
   final EdgeInsetsGeometry labelPadding = EdgeInsets.only(left: 5);
@@ -115,21 +115,40 @@ class _InputFieldState extends State<InputField> {
             height: 50,
             padding: EdgeInsets.symmetric(horizontal: 10.0),
             decoration: BoxDecoration(
-              //color: white100,
+              color: white100,
               border: Border.all(color: black300, width: 1.0,),
               borderRadius: BorderRadius.circular(10.0),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Color.fromRGBO(0, 0, 0, 0.1), Color.fromRGBO(255, 255, 255, 1), Color.fromRGBO(255, 255, 255, 1),],
+                stops: [0.0, 0.2, 1],
+              ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.green,
+                  color: black200,
                 ),
-                BoxShadow(
-                  blurStyle: BlurStyle.inner,
-                  color: Colors.redAccent,
-                  spreadRadius: -5.0,
-                  blurRadius: 2.0,
-                ),
+              BoxShadow(
+                color: Colors.white,
+                spreadRadius: -6.0,
+                blurRadius: 5.0,
+              ),
+
+              //  BoxShadow(
+              //    blurRadius: 15,
+              //    //offset: -Offset(5, 5),
+              //    color: Colors.white,
+              //  ),
+              //  BoxShadow(
+              //     blurRadius: 15,
+              //     offset: Offset(4.5, 4.5),
+              //     color: black100,
+              //     //spreadRadius: -2.0,
+              //
+              //   ),
               ],
             ),
+
             // child: TextField(
             //   keyboardType: widget.keyboardType,
             //   controller: widget.controller,
@@ -139,7 +158,12 @@ class _InputFieldState extends State<InputField> {
             //   decoration: txtDecor(widget.showEye ?? false),
             // ),
           ),
-
+          (widget.helperText != null) ?
+          Container(
+            padding: labelPadding,
+            alignment: labelAlignment,
+            child: Text((widget.helperText != null) ? widget.helperText! : "", style: helperStyle),
+          ) : SizedBox(),
         ],
       )
     );
