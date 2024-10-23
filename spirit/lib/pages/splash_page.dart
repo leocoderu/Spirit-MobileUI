@@ -9,6 +9,7 @@ import 'package:fluro/fluro.dart';
 
 // Import Packages
 import 'package:spirit/fluro_router.dart';
+import 'package:spirit/pages/widgets/back_ground.dart';
 
 class SplashPage extends StatefulWidget {
   static const routeName = '/';
@@ -53,27 +54,10 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    bool orientation = MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
         body: Stack(
           children: [
-            Transform.rotate(
-              angle: orientation ? -1.2 : -0.4,
-              child: Transform.scale(
-                scaleX: orientation ? 3 : 4,
-                scaleY: orientation ? 1.5 : 2,
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: RadialGradient(
-                      center: orientation ? Alignment(0.3, 0.05) : Alignment(0.1, -0.05),
-                      radius: orientation ? 0.5 : 0.35,
-                      colors: <Color>[ Color(0xFFA3B3EB), Color(0xFF5267B2) ],
-                      stops: [ 0.0, 1.0 ],
-                    )
-                  ),
-                ),
-              ),
-            ),
+            BackGround(),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
