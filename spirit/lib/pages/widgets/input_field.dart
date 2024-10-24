@@ -1,40 +1,21 @@
+//import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
+
 import 'package:flutter/material.dart';
 class InputField extends StatefulWidget {
   const InputField({super.key,
     this.controller,
     this.keyboardType,
     this.label,
-    //this.labelStyle,
-    //this.labelPadding,
-    //this.labelAlignment,
-    //this.textStyle,
-    //this.cursorColor,
     this.hintText,
-    //this.hintStyle,
     this.helperText,
-    //this.obscureText,
     this.showEye,
-    //this.helperStyle,
   });
 
   final TextEditingController? controller;
   final TextInputType? keyboardType;
-
   final String? label;
-  //final TextStyle? labelStyle;
-  //final EdgeInsetsGeometry? labelPadding;
-  //final Alignment? labelAlignment;
-
-  //final TextStyle? textStyle;
-  //final Color? cursorColor;
-
   final String? hintText;
-  //final TextStyle? hintStyle;
-
   final String? helperText;
-  //final TextStyle? helperStyle;
-  //final bool? obscureText;
-
   final bool? showEye;
 
   @override
@@ -42,8 +23,6 @@ class InputField extends StatefulWidget {
 }
 
 class _InputFieldState extends State<InputField> {
-  //final ctrlLogin = TextEditingController();
-
   static const white100 = Color(0xFFFFFFFF);
   static const black100 = Color(0xFFF4F4F4);
   static const black200 = Color(0xFFC7C7C9);
@@ -52,14 +31,14 @@ class _InputFieldState extends State<InputField> {
   static const black500 = Color(0xFF201D26);
 
   final TextStyle labelStyle = TextStyle(color: black100, fontFamily: "Exo2", fontSize: 16.0,);
-  final EdgeInsetsGeometry labelPadding = EdgeInsets.only(left: 5);
+  final EdgeInsetsGeometry labelPadding = EdgeInsets.only(left: 7);
   final Alignment labelAlignment = Alignment.bottomLeft;
-  final TextStyle textStyle = TextStyle(color: Color(0xFF201D26), fontFamily: "Exo2", fontSize: 20.0);
-  final Color cursorColor = Colors.black;
+  final TextStyle textStyle = TextStyle(color: black500, fontFamily: "Exo2", fontSize: 20.0);
+  final Color cursorColor = black500;
   final TextStyle hintStyle = TextStyle(color: black300, fontFamily: "Exo2", fontSize: 20.0);
   final TextStyle helperStyle = TextStyle(color: black200, fontFamily: "Exo2", fontSize: 12.0);
 
-  late bool _showPass; // = widget.obscureText ?? false;
+  late bool _showPass;
 
   @override
   void initState() {
@@ -69,38 +48,6 @@ class _InputFieldState extends State<InputField> {
 
   @override
   Widget build(BuildContext context) {
-
-    InputDecoration txtDecor(bool showEye) {
-      return InputDecoration(
-        filled: false,
-        fillColor: white100,
-
-        //border: Border.none,
-        // enabledBorder: OutlineInputBorder(
-        //   borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        //   borderSide: BorderSide(color: black300),
-        // ),
-
-        // focusedBorder: OutlineInputBorder(
-        //     borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        //     borderSide: BorderSide(color: black300)
-        // ),
-        //border: UnderlineInputBorder() ,
-        //labelText: s,
-        //labelStyle: TextStyle(color: black100, fontSize: 16.0),
-        //hintText: widget.hintText,
-        //hintStyle: hintStyle,
-
-        //helperText: widget.helperText,
-        //helperStyle: helperStyle,
-
-        suffixIcon: showEye ? GestureDetector(
-          onTap: () => setState(() => _showPass = !_showPass),
-          child: Icon(_showPass ? Icons.visibility : Icons.visibility_off),
-        ) : null,
-      );
-    }
-
     return Container(
       child: Column(
         children: [
@@ -112,58 +59,50 @@ class _InputFieldState extends State<InputField> {
             ) : SizedBox(),
           Container(
             width: double.infinity,
-            height: 50,
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            height: 50.0,
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+              margin: EdgeInsets.symmetric(vertical: 2.0),
             decoration: BoxDecoration(
               color: white100,
-              border: Border.all(color: black300, width: 1.0,),
+              border: Border.all(color: black300, width: 1),
               borderRadius: BorderRadius.circular(10.0),
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Color.fromRGBO(0, 0, 0, 0.1), Color.fromRGBO(255, 255, 255, 1), Color.fromRGBO(255, 255, 255, 1),],
-                stops: [0.0, 0.2, 1],
+                colors: [black200, white100],
+                stops: [0, 0.22],
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: black200,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: widget.controller,
+                    obscureText: _showPass,
+                    decoration: InputDecoration.collapsed(
+                      fillColor: white100,
+                      hintText: widget.hintText,
+                      hintStyle: hintStyle,
+                    ),
+                  ),
                 ),
-              BoxShadow(
-                color: Colors.white,
-                spreadRadius: -6.0,
-                blurRadius: 5.0,
-              ),
-
-              //  BoxShadow(
-              //    blurRadius: 15,
-              //    //offset: -Offset(5, 5),
-              //    color: Colors.white,
-              //  ),
-              //  BoxShadow(
-              //     blurRadius: 15,
-              //     offset: Offset(4.5, 4.5),
-              //     color: black100,
-              //     //spreadRadius: -2.0,
-              //
-              //   ),
+                if (widget.showEye ?? false == true)
+                  GestureDetector(
+                    onTap: () => setState(() => _showPass = !_showPass),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Icon(color: black400, _showPass ? Icons.visibility : Icons.visibility_off),
+                    ),
+                  ),
               ],
             ),
-
-            // child: TextField(
-            //   keyboardType: widget.keyboardType,
-            //   controller: widget.controller,
-            //   obscureText: _showPass,
-            //   style: textStyle,
-            //   cursorColor: cursorColor,
-            //   decoration: txtDecor(widget.showEye ?? false),
-            // ),
           ),
           (widget.helperText != null) ?
-          Container(
-            padding: labelPadding,
-            alignment: labelAlignment,
-            child: Text((widget.helperText != null) ? widget.helperText! : "", style: helperStyle),
-          ) : SizedBox(),
+            Container(
+              padding: labelPadding,
+              alignment: labelAlignment,
+              child: Text(widget.helperText!, style: helperStyle),
+            ) : SizedBox(),
         ],
       )
     );
