@@ -20,9 +20,9 @@ class MyFluroRouter {
   //static Handler settingsHandler = Handler(handlerFunc: (context, Map<String, dynamic> params) => const SettingsPage());
 
   static void setupRouter(){
-    router.define(SplashPage.routeName, handler: splashHandler, transitionType: TransitionType.fadeIn);
+    router.define(SplashPage.routeName, handler: splashHandler); //, transitionType: TransitionType.fadeIn); //, transitionDuration: const Duration(seconds: 1));
+    router.define(AuthPage.routeName, handler: authHandler); //, transitionType: TransitionType.fadeIn); //, transitionDuration: const Duration(seconds: 1));
     router.define(HomePage.routeName, handler: homeHandler, transitionType: TransitionType.fadeIn);
-    router.define(AuthPage.routeName, handler: authHandler, transitionType: TransitionType.fadeIn);
     //router.define(SettingsPage.routeName, handler: settingsHandler, transitionType: TransitionType.inFromRight);
     router.notFoundHandler = Handler(handlerFunc: (context, Map<String, dynamic> params) => const NotFoundPage());
   }
