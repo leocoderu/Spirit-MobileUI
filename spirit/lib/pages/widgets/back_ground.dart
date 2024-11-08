@@ -10,8 +10,8 @@ class BackGround extends StatelessWidget {
   Widget build(BuildContext context) {
     bool orientation = MediaQuery.of(context).orientation == Orientation.portrait;
 
-    final first  = firstColor  == null ? Color(0xFFA3B3EB) : firstColor;
-    final second = secondColor == null ? Color(0xFF5267B2) : secondColor;
+    final first  = firstColor  ?? const Color(0xFFA3B3EB);
+    final second = secondColor ?? const Color(0xFF5267B2);
 
     return Container(
       color: second,
@@ -25,10 +25,10 @@ class BackGround extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
                 gradient: RadialGradient(
-                  center: orientation ? Alignment(0.0, -0.15) : Alignment(0.1, -0.05),
+                  center: orientation ? const Alignment(0.0, -0.15) : const Alignment(0.1, -0.05),
                   radius: orientation ? 0.4 : 0.35,
-                  colors: <Color>[ first!, second! ],
-                  stops: [ 0.0, 1.0 ],
+                  colors: <Color>[ first, second ],
+                  stops: const [ 0.0, 1.0 ],
                 )
             ),
           ),
