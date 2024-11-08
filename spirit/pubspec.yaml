@@ -16,6 +16,7 @@ dependencies:
   intl: any
   fluro: ^2.0.5
   flutter_svg: ^2.0.13
+
   #flutter_neumorphic_plus: ^3.4.0
 
   cupertino_icons: ^1.0.8
@@ -28,10 +29,16 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_native_splash: ^2.4.2
 
   analyzer_sm:
     path: ./packages/analyzer_sm
+
+flutter_native_splash:
+  color: "#5267B2"
+  image: "assets/logo.png"
+  android: true
+  ios: true
 
 flutter:
   generate: true

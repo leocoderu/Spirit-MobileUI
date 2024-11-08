@@ -8,9 +8,23 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 // Import Packages
 import 'package:spirit/fluro_router.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-void main() {
-  //WidgetsFlutterBinding.ensureInitialized();
+Future<void> preloadSVGs(List<String> assetPaths) async {
+  for (final path in assetPaths) {
+    final loader = SvgAssetLoader(path);
+    await svg.cache.putIfAbsent(
+      loader.cacheKey(null),
+        () => loader.loadBytes(null),
+    );
+  }
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await preloadSVGs([
+    'assets/logo.svg'
+  ]);
   MyFluroRouter.setupRouter();
   runApp(const MyApp());
 }
