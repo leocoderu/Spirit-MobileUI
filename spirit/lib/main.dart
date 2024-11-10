@@ -23,7 +23,7 @@ Future<void> preloadSVGs(List<String> assetPaths) async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await preloadSVGs([
-    'assets/logo.svg'
+    'assets/system/svg/logo.svg',
   ]);
   MyFluroRouter.setupRouter();
   runApp(const MyApp());

@@ -5,6 +5,7 @@ class InputField extends StatefulWidget {
   const InputField({super.key,
     this.controller,
     this.keyboardType,
+    this.padding,
     this.label,
     this.hintText,
     this.helperText,
@@ -13,6 +14,7 @@ class InputField extends StatefulWidget {
 
   final TextEditingController? controller;
   final TextInputType? keyboardType;
+  final EdgeInsetsGeometry? padding;
   final String? label;
   final String? hintText;
   final String? helperText;
@@ -49,6 +51,7 @@ class _InputFieldState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: widget.padding ?? EdgeInsets.all(0.0),
       child: Column(
         children: [
           (widget.label != null) ?
@@ -86,7 +89,7 @@ class _InputFieldState extends State<InputField> {
                     ),
                   ),
                 ),
-                if (widget.showEye ?? false == true)
+                if (widget.showEye ?? false)
                   GestureDetector(
                     onTap: () => setState(() => _showPass = !_showPass),
                     child: Padding(
@@ -104,7 +107,7 @@ class _InputFieldState extends State<InputField> {
               child: Text(widget.helperText!, style: helperStyle),
             ) : SizedBox(),
         ],
-      )
+      ),
     );
   }
 }

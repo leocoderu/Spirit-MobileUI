@@ -8,7 +8,7 @@ import 'package:fluro/fluro.dart';
 //import 'package:spirit/pages/settings_page/settings_page.dart';
 import 'package:spirit/pages/home_page.dart';
 import 'package:spirit/pages/splash_page.dart';
-import 'package:spirit/pages/auth_page.dart';
+import 'package:spirit/pages/auth_page/auth_page.dart';
 import 'package:spirit/pages/unknown_page.dart';
 
 class MyFluroRouter {
@@ -22,7 +22,7 @@ class MyFluroRouter {
   static void setupRouter(){
     router.define(SplashPage.routeName, handler: splashHandler); //, transitionType: TransitionType.fadeIn); //, transitionDuration: const Duration(seconds: 1));
     router.define(AuthPage.routeName, handler: authHandler); //, transitionType: TransitionType.fadeIn); //, transitionDuration: const Duration(seconds: 1));
-    router.define(HomePage.routeName, handler: homeHandler, transitionType: TransitionType.fadeIn);
+    router.define(HomePage.routeName, handler: homeHandler); //, transitionType: TransitionType.fadeIn);
     //router.define(SettingsPage.routeName, handler: settingsHandler, transitionType: TransitionType.inFromRight);
     router.notFoundHandler = Handler(handlerFunc: (context, Map<String, dynamic> params) => const NotFoundPage());
   }

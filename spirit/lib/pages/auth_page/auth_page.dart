@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:spirit/pages/auth_page/auth_widgets/login_pass.dart';
 import 'package:spirit/pages/widgets/back_ground.dart';
-import 'package:spirit/pages/widgets/input_field.dart';
 
-class AuthPage extends StatefulWidget {
+class AuthPage extends StatelessWidget {
   static const routeName = '/auth';
   const AuthPage({super.key});
-
-  @override
-  State<AuthPage> createState() => _AuthPageState();
-}
-
-class _AuthPageState extends State<AuthPage> {
-  final ctrlLogin = TextEditingController();
-  final ctrlPass = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final bool _orientation = MediaQuery.of(context).orientation == Orientation.portrait;
     final _width = MediaQuery.of(context).size.width;
     final _height = MediaQuery.of(context).size.height;
+    final _bottom = MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
       body: PopScope(
         canPop: false,
@@ -27,62 +20,25 @@ class _AuthPageState extends State<AuthPage> {
           children: [
             BackGround(),
             Positioned(
-                left: _orientation ? ((_width - 96) / 2) : ((_width - 96) / 2) - 170,
-                top:  _orientation ? ((_height - 177 - 10 - (MediaQuery.of(context).viewInsets.bottom * 0.822)) / 2) - 170 : ((_height - 177 - 10) / 2),
+                left: _orientation ? ((_width - 96) / 2) : ((_width - 96) / 2) - 180,
+                top:  _orientation
+                    ? ((_height - 139 - (_bottom * 0.822)) / 2) - 180 - 5
+                    : ((_height - 139 - (_bottom * 0.822)) / 2) - 5,
                 child: Container(
                   width: 96,
-                  child: SvgPicture.asset('assets/logo.svg'),
+                  child: SvgPicture.asset('assets/system/svg/logo.svg'),
                 ),
             ),
-            Positioned(
-              left: _orientation ? ((_width - 320) / 2) : ((_width - 320) / 2) + 170,
-              width: 320,
-              height: MediaQuery.of(context).size.height - MediaQuery.of(context).viewInsets.bottom, //_height,
+            Positioned.fill(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
-                      child: Container(
-                        width: 320,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            if (_orientation) SizedBox(height: 50),
-                            InputField(
-                              controller: ctrlLogin,
-                              keyboardType: TextInputType.visiblePassword,
-                              label: 'Login',
-                              hintText: "Login",
-                              helperText: "You should enter Login for Authorization",
-                            ),
-                            SizedBox(height: 5),
-                            InputField(
-                              controller: ctrlPass,
-                              keyboardType: TextInputType.visiblePassword,
-                              label: 'Password',
-                              hintText: 'Password',
-                              helperText: "You should enter Password for Authorization",
-                              showEye: true,
-                            ),
-                            SizedBox(height: 15),
-                            ElevatedButton(
-                              style: ButtonStyle(
-                                minimumSize: WidgetStatePropertyAll(Size(320, 60)),
-                                maximumSize: WidgetStatePropertyAll(Size(320, 60)), //54
-                                elevation: WidgetStatePropertyAll(5.0),
-                                foregroundColor: WidgetStatePropertyAll(Colors.white),
-                                backgroundColor: WidgetStatePropertyAll(Color(0xFF859AE5)),
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    )
-                                ),
-                              ),
-                              onPressed: () {},
-                              child: Text('OK', style: TextStyle(fontFamily: "Exo2", fontSize: 18),),
-                            ),
-                          ],
-                        ),
-                      )
+                    child: Container(
+                      alignment: _orientation? Alignment.center : Alignment.centerRight,
+                      //color: Colors.green,
+                      child:  LoginPass(),
+                    ),
                   ),
                   if(MediaQuery.of(context).viewInsets.bottom == 0.0)
                     TextButton(
@@ -91,7 +47,7 @@ class _AuthPageState extends State<AuthPage> {
                         maximumSize: WidgetStatePropertyAll(Size(320, 50)),
                         foregroundColor: WidgetStatePropertyAll(Colors.white60),
                       ),
-                      onPressed: () {},
+                      onPressed: null,
                       child: Text('Registration in the system',
                         style: TextStyle(
                             fontFamily: "Exo2",
@@ -100,13 +56,13 @@ class _AuthPageState extends State<AuthPage> {
                               Shadow(
                                   color: Color.fromRGBO(0, 0, 0, 0.5),
                                   offset: Offset(2, 2),
-                                  blurRadius: 3
-                              )
-                            ]
+                                  blurRadius: 3,
+                              ),
+                            ],
                         ),
                       ),
                     ),
-               ],
+                ],
               ),
             ),
           ],

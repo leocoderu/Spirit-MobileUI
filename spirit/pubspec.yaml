@@ -15,7 +15,8 @@ dependencies:
     sdk: flutter
   intl: any
   fluro: ^2.0.5
-  flutter_svg: ^2.0.13
+  #flutter_svg: ^2.0.13
+  flutter_svg: ^2.0.9
 
   #flutter_neumorphic_plus: ^3.4.0
 
@@ -29,27 +30,27 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_native_splash: ^2.4.2
+#  flutter_native_splash: ^2.4.2
 
   analyzer_sm:
     path: ./packages/analyzer_sm
 
-flutter_native_splash:
-  color: "#5267B2"
-  image: "assets/logo.png"
-  android: true
-  ios: true
+#flutter_native_splash:
+#  color: "#5267B2"
+#  image: "assets/logo.png"
+#  android: true
+#  ios: true
 
 flutter:
   generate: true
   uses-material-design: true
 
   assets:
-    - assets/logo.png
-    - assets/logo.svg
-    - assets/images/
-    - assets/fonts/exo2/
-    - assets/svg/
+    - assets/system/images/
+    - assets/system/svg/
+    - assets/data/images/
+    - assets/data/svg/
+    - assets/fonts/
 
   fonts:
     - family: Exo2
