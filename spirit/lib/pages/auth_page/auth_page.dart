@@ -28,7 +28,7 @@ class _AuthPageState extends State<AuthPage> {
             BackGround(),
             Positioned(
                 left: _orientation ? ((_width - 96) / 2) : ((_width - 96) / 2) - 170,
-                top:  _orientation ? ((_height - 177 - 10) / 2) - 170 : ((_height - 177 - 10) / 2),
+                top:  _orientation ? ((_height - 177 - 10 - (MediaQuery.of(context).viewInsets.bottom * 0.822)) / 2) - 170 : ((_height - 177 - 10) / 2),
                 child: Container(
                   width: 96,
                   child: SvgPicture.asset('assets/logo.svg'),
@@ -37,7 +37,7 @@ class _AuthPageState extends State<AuthPage> {
             Positioned(
               left: _orientation ? ((_width - 320) / 2) : ((_width - 320) / 2) + 170,
               width: 320,
-              height: _height,
+              height: MediaQuery.of(context).size.height - MediaQuery.of(context).viewInsets.bottom, //_height,
               child: Column(
                 children: [
                   Expanded(
@@ -61,14 +61,13 @@ class _AuthPageState extends State<AuthPage> {
                               label: 'Password',
                               hintText: 'Password',
                               helperText: "You should enter Password for Authorization",
-                              //obscureText: false, //!_showPass,
                               showEye: true,
                             ),
                             SizedBox(height: 15),
                             ElevatedButton(
                               style: ButtonStyle(
-                                minimumSize: WidgetStatePropertyAll(Size(320, 54)),
-                                maximumSize: WidgetStatePropertyAll(Size(320, 54)),
+                                minimumSize: WidgetStatePropertyAll(Size(320, 60)),
+                                maximumSize: WidgetStatePropertyAll(Size(320, 60)), //54
                                 elevation: WidgetStatePropertyAll(5.0),
                                 foregroundColor: WidgetStatePropertyAll(Colors.white),
                                 backgroundColor: WidgetStatePropertyAll(Color(0xFF859AE5)),
@@ -79,21 +78,34 @@ class _AuthPageState extends State<AuthPage> {
                                 ),
                               ),
                               onPressed: () {},
-                              child: Text('OK'),
+                              child: Text('OK', style: TextStyle(fontFamily: "Exo2", fontSize: 18),),
                             ),
                           ],
                         ),
                       )
                   ),
-                  TextButton(
-                    style: ButtonStyle(
-                      minimumSize: WidgetStatePropertyAll(Size(320, 50)),
-                      maximumSize: WidgetStatePropertyAll(Size(320, 50)),
-                      foregroundColor: WidgetStatePropertyAll(Colors.white60),
+                  if(MediaQuery.of(context).viewInsets.bottom == 0.0)
+                    TextButton(
+                      style: ButtonStyle(
+                        minimumSize: WidgetStatePropertyAll(Size(320, 50)),
+                        maximumSize: WidgetStatePropertyAll(Size(320, 50)),
+                        foregroundColor: WidgetStatePropertyAll(Colors.white60),
+                      ),
+                      onPressed: () {},
+                      child: Text('Registration in the system',
+                        style: TextStyle(
+                            fontFamily: "Exo2",
+                            fontSize: 16,
+                            shadows: [
+                              Shadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.5),
+                                  offset: Offset(2, 2),
+                                  blurRadius: 3
+                              )
+                            ]
+                        ),
+                      ),
                     ),
-                    onPressed: () {},
-                    child: Text('Registration in system'),
-                  ),
                ],
               ),
             ),
