@@ -37,7 +37,26 @@ class AuthPage extends StatelessWidget {
                     child: Container(
                       alignment: _orientation? Alignment.center : Alignment.centerRight,
                       //color: Colors.green,
-                      child:  LoginPass(),
+                      //child: LoginPass(),
+                      child: Container(
+                        height: 380,
+                        child: CarouselView(
+                            itemExtent: MediaQuery.of(context).size.width,
+                            backgroundColor: Colors.transparent,
+                            padding: EdgeInsets.only(top: 50),
+                            elevation: 5,
+                            overlayColor: null,
+                            reverse: true,
+
+                            itemSnapping: true,
+                            onTap: null,
+                            children: <Widget>[
+                              LoginPass(),
+                              LoginPass(),
+                              LoginPass(),
+                            ],
+                        ),
+                      ),
                     ),
                   ),
                   if(MediaQuery.of(context).viewInsets.bottom == 0.0)
