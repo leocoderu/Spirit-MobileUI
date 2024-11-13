@@ -24,6 +24,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await preloadSVGs([
     'assets/system/svg/logo.svg',
+    //'assets/system/svg/finger.svg',
   ]);
   MyFluroRouter.setupRouter();
   runApp(const MyApp());

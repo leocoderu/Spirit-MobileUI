@@ -1,5 +1,9 @@
+// Import Flutter
 import 'package:flutter/material.dart';
+// Import Packages
 import 'package:flutter_svg/flutter_svg.dart';
+// Import Modules
+import 'package:spirit/pages/auth_page/auth_widgets/finger_print.dart';
 import 'package:spirit/pages/auth_page/auth_widgets/login_pass.dart';
 import 'package:spirit/pages/widgets/back_ground.dart';
 
@@ -37,26 +41,26 @@ class AuthPage extends StatelessWidget {
                     child: Container(
                       alignment: _orientation? Alignment.center : Alignment.centerRight,
                       //color: Colors.green,
-                      //child: LoginPass(),
-                      child: Container(
-                        height: 380,
-                        child: CarouselView(
-                            itemExtent: MediaQuery.of(context).size.width,
-                            backgroundColor: Colors.transparent,
-                            padding: EdgeInsets.only(top: 50),
-                            elevation: 5,
-                            overlayColor: null,
-                            reverse: true,
-
-                            itemSnapping: true,
-                            onTap: null,
-                            children: <Widget>[
-                              LoginPass(),
-                              LoginPass(),
-                              LoginPass(),
-                            ],
-                        ),
-                      ),
+                      child: FingerPrint(),
+                      // child: Container(
+                      //   height: 380,
+                      //   child: CarouselView(
+                      //       itemExtent: MediaQuery.of(context).size.width,
+                      //       backgroundColor: Colors.transparent,
+                      //       padding: EdgeInsets.only(top: 50),
+                      //       elevation: 5,
+                      //       overlayColor: null,
+                      //       reverse: true,
+                      //
+                      //       itemSnapping: true,
+                      //       onTap: null,
+                      //       children: <Widget>[
+                      //         LoginPass(),
+                      //         FingerPrint(),
+                      //         LoginPass(),
+                      //       ],
+                      //   ),
+                      //),
                     ),
                   ),
                   if(MediaQuery.of(context).viewInsets.bottom == 0.0)
