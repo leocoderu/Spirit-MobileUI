@@ -25,7 +25,7 @@ class LocalAuth {
         localizedReason: 'Use Face ID to authenticate',
         options: const AuthenticationOptions(
           useErrorDialogs: true,
-          stickyAuth: true,
+          //stickyAuth: true,
         ),
       );
     } catch (e) {
