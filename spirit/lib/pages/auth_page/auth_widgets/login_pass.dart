@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:spirit/pages/widgets/input_field.dart';
+import 'package:spirit/fluro_router.dart';
+import 'package:spirit/src/shared/app_colors.dart';
+import 'package:spirit/src/shared/button_style.dart';
+import 'package:spirit/src/shared/font_style.dart';
+import 'package:spirit/src/widgets/input_field.dart';
 
 class LoginPass extends StatefulWidget {
   const LoginPass({super.key});
@@ -40,20 +44,9 @@ class _LoginPassState extends State<LoginPass> {
               showEye: true,
             ),
             ElevatedButton(
-              style: ButtonStyle(
-                minimumSize: WidgetStatePropertyAll(Size(320, 60)),
-                maximumSize: WidgetStatePropertyAll(Size(320, 60)),
-                elevation: WidgetStatePropertyAll(5.0),
-                foregroundColor: WidgetStatePropertyAll(Colors.white),
-                backgroundColor: WidgetStatePropertyAll(Color(0xFF859AE5)),
-                shape: WidgetStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-              ),
-              onPressed: null,
-              child: Text('OK', style: TextStyle(fontFamily: "Exo2", fontSize: 18),),
+              style: elevatedButtonStyle,
+              onPressed: () { MyFluroRouter.router.navigateTo(context, '/home');}, //null,
+              child: Text('OK', style: elevatedButtonText.copyWith(color: blackColor100)),
             ),
           ],
         ),

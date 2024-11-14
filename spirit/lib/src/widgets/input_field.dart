@@ -1,6 +1,8 @@
-//import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
-
 import 'package:flutter/material.dart';
+
+import 'package:spirit/src/shared/app_colors.dart';
+import 'package:spirit/src/shared/font_style.dart';
+
 class InputField extends StatefulWidget {
   const InputField({super.key,
     this.controller,
@@ -25,20 +27,9 @@ class InputField extends StatefulWidget {
 }
 
 class _InputFieldState extends State<InputField> {
-  static const white100 = Color(0xFFFFFFFF);
-  static const black100 = Color(0xFFF4F4F4);
-  static const black200 = Color(0xFFC7C7C9);
-  static const black300 = Color(0xFF908E93);
-  static const black400 = Color(0xFF58565C);
-  static const black500 = Color(0xFF201D26);
-
-  final TextStyle labelStyle = TextStyle(color: black100, fontFamily: "Exo2", fontSize: 16.0,);
   final EdgeInsetsGeometry labelPadding = EdgeInsets.only(left: 7);
   final Alignment labelAlignment = Alignment.bottomLeft;
-  final TextStyle textStyle = TextStyle(color: black500, fontFamily: "Exo2", fontSize: 20.0);
-  final Color cursorColor = black500;
-  final TextStyle hintStyle = TextStyle(color: black300, fontFamily: "Exo2", fontSize: 20.0);
-  final TextStyle helperStyle = TextStyle(color: black200, fontFamily: "Exo2", fontSize: 12.0);
+  final Color cursorColor = blackColor500;
 
   late bool _showPass;
 
@@ -58,7 +49,8 @@ class _InputFieldState extends State<InputField> {
             Container(
               padding: labelPadding,
               alignment: labelAlignment,
-              child: Text((widget.label != null) ? widget.label! : "", style: labelStyle),
+              child: Text((widget.label != null) ? widget.label! : "",
+                  style: inputLabel.copyWith(color: blackColor100),),
             ) : SizedBox(),
           Container(
             width: double.infinity,
@@ -66,13 +58,13 @@ class _InputFieldState extends State<InputField> {
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
               margin: EdgeInsets.symmetric(vertical: 2.0),
             decoration: BoxDecoration(
-              color: white100,
-              border: Border.all(color: black300, width: 1),
+              color: whiteColor100,
+              border: Border.all(color: blackColor300, width: 1),
               borderRadius: BorderRadius.circular(10.0),
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [black200, white100],
+                colors: [blackColor200, whiteColor100],
                 stops: [0, 0.22],
               ),
             ),
@@ -83,9 +75,9 @@ class _InputFieldState extends State<InputField> {
                     controller: widget.controller,
                     obscureText: _showPass,
                     decoration: InputDecoration.collapsed(
-                      fillColor: white100,
+                      fillColor: whiteColor100,
                       hintText: widget.hintText,
-                      hintStyle: hintStyle,
+                      hintStyle: inputText.copyWith(color: blackColor300),
                     ),
                   ),
                 ),
@@ -94,7 +86,7 @@ class _InputFieldState extends State<InputField> {
                     onTap: () => setState(() => _showPass = !_showPass),
                     child: Padding(
                       padding: EdgeInsets.only(left: 10),
-                      child: Icon(color: black400, _showPass ? Icons.visibility : Icons.visibility_off),
+                      child: Icon(color: blackColor400, _showPass ? Icons.visibility : Icons.visibility_off),
                     ),
                   ),
               ],
@@ -104,7 +96,7 @@ class _InputFieldState extends State<InputField> {
             Container(
               padding: labelPadding,
               alignment: labelAlignment,
-              child: Text(widget.helperText!, style: helperStyle),
+              child: Text(widget.helperText!, style: inputHint.copyWith(color: blackColor200)),
             ) : SizedBox(),
         ],
       ),

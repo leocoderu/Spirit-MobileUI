@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:spirit/src/shared/app_colors.dart';
+import 'package:spirit/src/shared/font_style.dart';
 
 class FingerPrint extends StatelessWidget {
   const FingerPrint({super.key});
@@ -19,10 +21,7 @@ class FingerPrint extends StatelessWidget {
                 child: Image.asset('assets/system/images/finger.png', width: 279, height: 279,),
               ),
             ),
-            const Text('Place you Finger on Scanner',
-              style: TextStyle(fontFamily: 'Exo2', fontSize: 20,
-                  color: Color.fromRGBO(244,244,244, 1),),
-            ),
+            Text('Place you Finger on Scanner', style: header2.copyWith(color: blackColor100)),
           ],
         ),
       ),

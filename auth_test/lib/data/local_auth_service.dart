@@ -4,11 +4,11 @@ import 'package:local_auth_android/local_auth_android.dart';
 import 'package:local_auth_darwin/local_auth_darwin.dart';
 
 class LocalAuth {
-  static final _auth = LocalAuthentication();
-  static Future<bool> _canAuthenticate() async =>
+  final _auth = LocalAuthentication();
+  Future<bool> _canAuthenticate() async =>
       await _auth.canCheckBiometrics || await _auth.isDeviceSupported();
 
-  static Future<bool> authenticate() async {
+  Future<bool> authenticate() async {
     try {
       if (!await _canAuthenticate()) return false;
 

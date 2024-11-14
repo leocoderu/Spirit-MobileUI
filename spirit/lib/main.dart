@@ -9,6 +9,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 // Import Packages
 import 'package:spirit/fluro_router.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:spirit/src/shared/app_colors.dart';
 
 Future<void> preloadSVGs(List<String> assetPaths) async {
   for (final path in assetPaths) {
@@ -24,7 +25,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await preloadSVGs([
     'assets/system/svg/logo.svg',
-    //'assets/system/svg/finger.svg',
   ]);
   MyFluroRouter.setupRouter();
   runApp(const MyApp());
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       title: 'Spirit',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: mainColor400),
         useMaterial3: true,
       ),
       supportedLocales: L10n.all,

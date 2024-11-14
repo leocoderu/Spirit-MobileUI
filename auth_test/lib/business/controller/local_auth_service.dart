@@ -2,9 +2,9 @@
 import 'package:auth_test/business/di/locator.dart';
 import 'package:auth_test/data/local_auth_service.dart';
 
-class LocalAuth {
+class LocalAuthService {
   Future<bool> authUser() async {
-    return locator.get<LocalAuth>().authUser();
+    return locator.get<LocalAuthService>().authUser();
   }
 
   // Future<Null> logOut() async {

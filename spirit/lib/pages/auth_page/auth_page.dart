@@ -2,10 +2,15 @@
 import 'package:flutter/material.dart';
 // Import Packages
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:spirit/fluro_router.dart';
 // Import Modules
 import 'package:spirit/pages/auth_page/auth_widgets/finger_print.dart';
 import 'package:spirit/pages/auth_page/auth_widgets/login_pass.dart';
-import 'package:spirit/pages/widgets/back_ground.dart';
+import 'package:spirit/src/shared/app_colors.dart';
+import 'package:spirit/src/shared/button_style.dart';
+import 'package:spirit/src/shared/font_style.dart';
+import 'package:spirit/src/widgets/back_ground.dart';
+import 'package:spirit/src/widgets/logo.dart';
 
 class AuthPage extends StatelessWidget {
   static const routeName = '/auth';
@@ -22,16 +27,13 @@ class AuthPage extends StatelessWidget {
         canPop: false,
         child: Stack(
           children: [
-            BackGround(),
-            Positioned(
-                left: _orientation ? ((_width - 96) / 2) : ((_width - 96) / 2) - 180,
-                top:  _orientation
-                    ? ((_height - 139 - (_bottom * 0.822)) / 2) - 180 - 5
-                    : ((_height - 139 - (_bottom * 0.822)) / 2) - 5,
-                child: Container(
-                  width: 96,
-                  child: SvgPicture.asset('assets/system/svg/logo.svg'),
-                ),
+            BackGround(firstColor: mainColor100, secondColor: mainColor400),
+            Logo(
+              widthLogo: 96,
+              X: _orientation ? ((_width - 96) / 2) : ((_width - 96) / 2) - 180,
+              Y: _orientation
+                       ? ((_height - 139 - (_bottom * 0.822)) / 2) - 180 - 5
+                       : ((_height - 139 - (_bottom * 0.822)) / 2) - 5,
             ),
             Positioned.fill(
               child: Column(
@@ -41,7 +43,8 @@ class AuthPage extends StatelessWidget {
                     child: Container(
                       alignment: _orientation? Alignment.center : Alignment.centerRight,
                       //color: Colors.green,
-                      child: FingerPrint(),
+                      child: LoginPass(),
+                      //child: FingerPrint(),
                       // child: Container(
                       //   height: 380,
                       //   child: CarouselView(
@@ -65,25 +68,9 @@ class AuthPage extends StatelessWidget {
                   ),
                   if(MediaQuery.of(context).viewInsets.bottom == 0.0)
                     TextButton(
-                      style: ButtonStyle(
-                        minimumSize: WidgetStatePropertyAll(Size(320, 50)),
-                        maximumSize: WidgetStatePropertyAll(Size(320, 50)),
-                        foregroundColor: WidgetStatePropertyAll(Colors.white60),
-                      ),
+                      style: textButtonStyle,
                       onPressed: null,
-                      child: Text('Registration in the system',
-                        style: TextStyle(
-                            fontFamily: "Exo2",
-                            fontSize: 16,
-                            shadows: [
-                              Shadow(
-                                  color: Color.fromRGBO(0, 0, 0, 0.5),
-                                  offset: Offset(2, 2),
-                                  blurRadius: 3,
-                              ),
-                            ],
-                        ),
-                      ),
+                      child: Text('Registration in the system', style: textButtonText),
                     ),
                 ],
               ),
