@@ -1,7 +1,8 @@
-import 'package:auth_test/business/di/locator.dart';
-import 'package:auth_test/data/local_auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
+
+import 'package:auth_test/business/controller/local_auth_service.dart';
+import 'package:auth_test/business/di/locator.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             ElevatedButton(
                 onPressed: () async {
-                  final authenticate = await locator.get<LocalAuthService>() LocalAuthService.authenticate();
+                  final authenticate = await locator.get<LocalAuthService>().authUser();
                   setState(() {
                     authenticated = authenticate;
                   });
