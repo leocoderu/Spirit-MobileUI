@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spirit/src/shared/app_colors.dart';
 
 ButtonStyle elevatedButtonStyle = ButtonStyle(
+  padding: const WidgetStatePropertyAll(EdgeInsets.all(0.0)),
   minimumSize: const WidgetStatePropertyAll(Size(320, 60)),
   maximumSize: const WidgetStatePropertyAll(Size(320, 60)),
   elevation: const WidgetStatePropertyAll(5.0),

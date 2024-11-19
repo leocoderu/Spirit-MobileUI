@@ -141,7 +141,7 @@ class _SplashPageState extends State<SplashPage> {
                       ],
                     ),
                     onEnd: () {
-                      MyFluroRouter.router.navigateTo(context, '/auth', transition: TransitionType.fadeIn); //, transitionDuration: const Duration(microseconds: 10));
+                      MyFluroRouter.router.navigateTo(context, '/localauth', transition: TransitionType.fadeIn); //, transitionDuration: const Duration(microseconds: 10));
                     },
                 ),
               ),
