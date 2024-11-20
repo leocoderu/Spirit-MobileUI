@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 
@@ -16,11 +17,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final LocalAuthentication auth = LocalAuthentication();
 
+  late int strongID;
   late int faceID;
   late int fingerprint;
 
   @override
   void initState() {
+    strongID = 0;
     faceID = 0;
     fingerprint = 0;
 
@@ -66,39 +69,30 @@ class _HomeScreenState extends State<HomeScreen> {
                       await auth.getAvailableBiometrics();
 
                   if (availableBiometrics.isNotEmpty) {
-                    debugPrint('Some biometrics are enrolled.');
-                    if (availableBiometrics.contains(BiometricType.strong) ||
-                        availableBiometrics.contains(BiometricType.face))
-                      {setState(() {
-                        faceID = 1;
-                      });}
-                    else {
-                      setState(() {
-                        faceID = 2;
-                      });
-                    }
-                    if (availableBiometrics.contains(BiometricType.strong) ||
-                        availableBiometrics.contains(BiometricType.fingerprint))
-                      {setState(() {
-                        fingerprint = 1;
-                      });}
-                    else {
-                      setState(() {
-                        fingerprint = 2;
-                      });
-                    }
+                    if (kDebugMode) debugPrint('Some biometrics are enrolled.');
+
+                    setState(() {
+                      strongID    = (availableBiometrics.contains(BiometricType.strong)) ? 1 : 2;
+                      faceID      = (availableBiometrics.contains(BiometricType.face)) ? 1 : 2;
+                      fingerprint = (availableBiometrics.contains(BiometricType.fingerprint)) ? 1 : 2;
+                    });
+
                   } else {
-                    debugPrint('No available biometrics.');
+                    if (kDebugMode) debugPrint('No available biometrics.');
                   }
 
-                  if (availableBiometrics.contains(BiometricType.strong) ||
-                      availableBiometrics.contains(BiometricType.face)) {
-                    debugPrint('Specific types of biometrics are available.');
-                    // Use checks like this with caution!
-                  }
+                  // if (availableBiometrics.contains(BiometricType.strong) ||
+                  //     availableBiometrics.contains(BiometricType.face)) {
+                  //   debugPrint('Specific types of biometrics are available.');
+                  //   // Use checks like this with caution!
+                  // }
                 },
                 child: const Text('Get info'),
             ),
+            if(strongID == 0) const Text('StrongID unknown'),
+            if(strongID == 1) const Text('StrongID are available'),
+            if(strongID == 2) const Text('StrongID are not available'),
+
             if(faceID == 0) const Text('FaceID unknown'),
             if(faceID == 1) const Text('FaceID are available'),
             if(faceID == 2) const Text('FaceID are not available'),

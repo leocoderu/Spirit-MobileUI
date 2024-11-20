@@ -26,6 +26,8 @@ class LocalAuth {
         options: const AuthenticationOptions(
           useErrorDialogs: true,
           stickyAuth: false,
+          sensitiveTransaction: true,
+          biometricOnly: true,
         ),
       );
     } catch (e) {

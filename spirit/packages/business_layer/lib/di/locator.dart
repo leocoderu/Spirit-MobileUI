@@ -1,14 +1,13 @@
-//import 'package:get_it/get_it.dart';
+import 'package:get_it/get_it.dart';
 
-//import 'package:data_layer/data_layer.dart';
-//import 'package:business_layer/business_layer.dart';
-//import 'package:model/model.dart';
+import 'package:business_layer/business_layer.dart';
+import 'package:data_layer/data_layer.dart';
 
-//final locator = GetIt.instance;
+final locator = GetIt.instance;
 
 void setupServices() async {
-  // locator.registerSingleton<AuthRepo>(AuthRepo());
-  // locator.registerSingleton<AuthController>(AuthController());
+  locator.registerSingleton<LocalPin>(LocalPin());
+  locator.registerSingleton<LocalPinController>(LocalPinController());
   //
   // locator.registerSingleton<ProductRepo>(ProductRepo());
   // locator.registerSingleton<ProdController>(ProdController());

@@ -1,15 +1,13 @@
 // Import Flutter
 import 'package:flutter/material.dart';
 
-// Import Localizations
-import 'package:spirit/l10n/l10n.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-
 // Import Packages
 import 'package:spirit/fluro_router.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:spirit/src/shared/app_colors.dart';
+
+// Import Layers
+import 'package:business_layer/business_layer.dart';
+import 'package:spirit/pages/main_page.dart';
 
 Future<void> preloadSVGs(List<String> assetPaths) async {
   for (final path in assetPaths) {
@@ -27,31 +25,7 @@ void main() async {
     'assets/system/svg/logo.svg',
   ]);
   MyFluroRouter.setupRouter();
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Spirit',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: mainColor400),
-        useMaterial3: true,
-      ),
-      supportedLocales: L10n.all,
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      initialRoute: '/',
-      onGenerateRoute: MyFluroRouter.router.generator,
-    );
-  }
+  setupServices();
+  runApp(const MainPage());
 }
 

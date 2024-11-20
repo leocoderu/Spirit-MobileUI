@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:spirit/src/shared/app_colors.dart';
+import 'package:spirit/src/shared/box_style.dart';
 import 'package:spirit/src/shared/font_style.dart';
 
 class InputField extends StatefulWidget {
@@ -57,17 +58,7 @@ class _InputFieldState extends State<InputField> {
             height: 50.0,
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
               margin: EdgeInsets.symmetric(vertical: 2.0),
-            decoration: BoxDecoration(
-              color: whiteColor100,
-              border: Border.all(color: blackColor300, width: 1),
-              borderRadius: BorderRadius.circular(10.0),
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [blackColor200, whiteColor100],
-                stops: [0, 0.22],
-              ),
-            ),
+            decoration: boxStyle,
             child: Row(
               children: [
                 Expanded(
