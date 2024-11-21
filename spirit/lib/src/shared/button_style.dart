@@ -5,7 +5,12 @@ ButtonStyle elevatedButtonStyle = ButtonStyle(
   padding: const WidgetStatePropertyAll(EdgeInsets.all(0.0)),
   minimumSize: const WidgetStatePropertyAll(Size(320, 60)),
   maximumSize: const WidgetStatePropertyAll(Size(320, 60)),
-  elevation: const WidgetStatePropertyAll(5.0),
+  elevation: WidgetStateProperty.resolveWith<double>(
+    (Set<WidgetState> states) {
+      if (states.contains(WidgetState.pressed)) return 0.0;
+      return 10.0;
+    },
+  ),
   foregroundColor: const WidgetStatePropertyAll(blackColor100),
   backgroundColor: const WidgetStatePropertyAll(mainColor200),
   shape: WidgetStatePropertyAll(

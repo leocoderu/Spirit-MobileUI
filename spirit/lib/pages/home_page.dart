@@ -1,4 +1,11 @@
+import "dart:io";
+
 import "package:flutter/material.dart";
+import "package:spirit/fluro_router.dart";
+
+import "package:spirit/src/shared/app_colors.dart";
+import "package:spirit/src/shared/button_style.dart";
+import "package:spirit/src/shared/font_style.dart";
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home';
@@ -15,20 +22,42 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Home Page"),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () => MyFluroRouter.router.navigateTo(context, '/settings'),
+              icon: Icon(Icons.settings),
+          ),
+        ],
       ),
-      body: Center(
+      drawer: Drawer(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('Tap this button many times:'),
-            Text('$_cnt', style: Theme.of(context).textTheme.headlineMedium),
+          children: [
+            SizedBox(height: 300,),
+            ElevatedButton(
+              style: elevatedButtonStyle.copyWith(
+                minimumSize: WidgetStatePropertyAll(Size(250.0, 50.0)),
+              ),
+              onPressed: ()=> exit(0),
+              child: Text('Exit', style: elevatedButtonText.copyWith(color: blackColor100)),
+            ),
           ],
         ),
+      ),
+      body: PopScope(
+        canPop: false,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text('Tap this button many times:'),
+                Text('$_cnt', style: Theme.of(context).textTheme.headlineMedium),
+              ],
+            ),
+          ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => setState(() => _cnt++),

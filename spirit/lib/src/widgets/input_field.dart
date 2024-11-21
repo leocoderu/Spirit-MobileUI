@@ -58,7 +58,7 @@ class _InputFieldState extends State<InputField> {
             height: 50.0,
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
               margin: EdgeInsets.symmetric(vertical: 2.0),
-            decoration: boxStyle,
+            decoration: boxDefaultStyle,
             child: Row(
               children: [
                 Expanded(
