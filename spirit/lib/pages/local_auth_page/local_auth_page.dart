@@ -31,6 +31,21 @@ class _LocalAuthPageState extends State<LocalAuthPage> with SingleTickerProvider
   String pincode = '';
   bool   start = false;
   BoxDecoration decoration = boxDefaultStyle;
+  late bool biometric;
+
+  @override
+  void initState() {
+    biometric = false;
+    _getBiometric();
+    super.initState();
+  }
+
+  void _getBiometric() async {
+    bool bio = await locator.get<LocalAuthController>().checkBio();
+    setState(() {
+      biometric = bio;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,13 +108,19 @@ class _LocalAuthPageState extends State<LocalAuthPage> with SingleTickerProvider
               child: PinPad(
                 height: 350,
                 width: 350,
+                digits: digits,
                 pincode: pincode,
+                biometric: biometric,
+                onBiometric: () async {
+                  if(await locator.get<LocalAuthController>().authUser()) {
+                    MyFluroRouter.router.navigateTo(context, '/auth'); //Goto Next Screen
+                  }
+                },
                 onChange: (String value) async {
                   setState(() => pincode = value);
                   if (value.length == digits) {
                     if (await locator.get<LocalPinController>().checkPin(value)) {
-                      //TODO: Goto Next Screen
-                      MyFluroRouter.router.navigateTo(context, '/auth');
+                      MyFluroRouter.router.navigateTo(context, '/auth'); //Goto Next Screen
                     } else { //Colorize in red and Start shake animation
                       setState(() {
                         decoration = boxErrorStyle;

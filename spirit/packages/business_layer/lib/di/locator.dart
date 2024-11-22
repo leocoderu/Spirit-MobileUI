@@ -8,6 +8,10 @@ final locator = GetIt.instance;
 void setupServices() async {
   locator.registerSingleton<LocalPin>(LocalPin());
   locator.registerSingleton<LocalPinController>(LocalPinController());
+
+  locator.registerSingleton<LocalAuthController>(LocalAuthController());
+  locator.registerSingleton<LocalAuth>(LocalAuth());
+
   //
   // locator.registerSingleton<ProductRepo>(ProductRepo());
   // locator.registerSingleton<ProdController>(ProdController());

@@ -8,6 +8,11 @@ class LocalAuth {
   Future<bool> _canAuthenticate() async =>
       await _auth.canCheckBiometrics || await _auth.isDeviceSupported();
 
+  Future<bool> checkBio() async {
+    final List<BiometricType> availableBiometrics = await _auth.getAvailableBiometrics();
+    return await _canAuthenticate() && availableBiometrics.isNotEmpty;
+  }
+
   Future<bool> authenticate() async {
     try {
       if (!await _canAuthenticate()) return false;
@@ -15,14 +20,14 @@ class LocalAuth {
       return await _auth.authenticate(
         authMessages: const [
           AndroidAuthMessages(
-            signInTitle: 'Sign In',
-            cancelButton: 'No Thanks',
+            signInTitle: 'Авторизация',
+            cancelButton: 'Отмена',
           ),
           IOSAuthMessages(
-            cancelButton: 'No Thanks',
+            cancelButton: 'Отмена',
           ),
         ],
-        localizedReason: 'Use Face ID to authenticate',
+        localizedReason: 'Приложите палец к сенсору',
         options: const AuthenticationOptions(
           useErrorDialogs: true,
           stickyAuth: false,

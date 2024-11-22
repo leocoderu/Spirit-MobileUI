@@ -44,9 +44,9 @@ class _LoginPassState extends State<LoginPass> {
               showEye: true,
             ),
             ElevatedButton(
-              style: elevatedButtonStyle,
+              style: elevatedButtonDefaultStyle,
               onPressed: () { MyFluroRouter.router.navigateTo(context, '/home');}, //null,
-              child: Text('OK', style: elevatedButtonText.copyWith(color: blackColor100)),
+              child: Text('OK', style: elevatedButtonText),
             ),
           ],
         ),

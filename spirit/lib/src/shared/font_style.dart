@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'app_colors.dart';
+
 const String fontFamily = "Exo2";
 
 const TextStyle logoName = TextStyle(
@@ -24,6 +26,7 @@ const TextStyle elevatedButtonText = TextStyle(
   fontFamily: fontFamily,
   fontSize: 20,
   fontWeight: FontWeight.w500,
+  color: blackColor100,
 );
 
 const TextStyle textButtonText = TextStyle(

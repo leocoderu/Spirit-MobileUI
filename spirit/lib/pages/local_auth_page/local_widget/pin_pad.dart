@@ -1,30 +1,30 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:business_layer/business_layer.dart';
+
 import 'package:spirit/pages/local_auth_page/local_widget/button_pad.dart';
 
 class PinPad extends StatelessWidget {
-  const PinPad({super.key, this.height, this.width, required this.pincode, required this.onChange});
+  const PinPad({super.key, this.height, this.width, required this.digits, required this.pincode, this.biometric, required this.onChange, this.onBiometric});
 
   final double? height;
   final double? width;
 
+  final int digits;
   final String pincode;
+  final bool? biometric;
   final void Function(String) onChange;
-
-//   @override
-//   State<PinPad> createState() => _PinPadState();
-// }
-//
-// class _PinPadState extends State<PinPad> {
-
-  //String pincode = '';
+  final VoidCallback? onBiometric;
 
   void addPin(int cod) {
-    // setState(() {
-    //   pincode += cod.toString();
-    // });
-    //String resStr = widget.pincode.toString() + cod.toString();
-    onChange(pincode.toString() + cod.toString());
+    if (pincode.length < digits)
+      onChange(pincode.toString() + cod.toString());
+  }
+
+  void delPin() {
+    if (pincode.length > 0) {
+      onChange(pincode.substring(0, pincode.length - 1));
+    }
   }
 
   @override
@@ -36,49 +36,50 @@ class PinPad extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              //padding: EdgeInsets.only(bottom: 10.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ButtonPad(text: '1', onPressed: () => addPin(1)),
-                  Expanded(child: Container()),
                   ButtonPad(text: '2', onPressed: () => addPin(2)),
-                  Expanded(child: Container()),
                   ButtonPad(text: '3', onPressed: () => addPin(3)),
                 ],
               ),
             ),
             Expanded(
-              //padding: EdgeInsets.only(bottom: 10.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ButtonPad(text: '4', onPressed: () => addPin(4)),
-                  Expanded(child:  Container()),
                   ButtonPad(text: '5', onPressed: () => addPin(5)),
-                  Expanded(child:  Container()),
                   ButtonPad(text: '6', onPressed: () => addPin(6)),
                 ],
               ),
             ),
             Expanded(
-              //padding: EdgeInsets.only(bottom: 10.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ButtonPad(text: '7', onPressed: () => addPin(7)),
-                  Expanded(child:  Container()),
                   ButtonPad(text: '8', onPressed: () => addPin(8)),
-                  Expanded(child:  Container()),
                   ButtonPad(text: '9', onPressed: () => addPin(9)),
                 ],
               ),
             ),
             Expanded(
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ButtonPad(icon: Icons.fingerprint),
-                  Expanded(child:  Container()),
+                  ButtonPad(
+                      icon: Icons.fingerprint,
+                      enable: biometric,
+                      onPressed: onBiometric,
+                      //     () async {
+                      //   bool res = await locator.get<LocalAuthController>().authUser();
+                      //   print('result: $res');
+                      // },
+                  ),
                   ButtonPad(text: '0', onPressed: () => addPin(0)),
-                  Expanded(child:  Container()),
-                  ButtonPad(icon: Icons.backspace),
+                  ButtonPad(icon: Icons.backspace, onPressed: () => delPin()),
                 ],
               ),
             ),

@@ -38,11 +38,11 @@ class _HomePageState extends State<HomePage> {
           children: [
             SizedBox(height: 300,),
             ElevatedButton(
-              style: elevatedButtonStyle.copyWith(
+              style: elevatedButtonDefaultStyle.copyWith(
                 minimumSize: WidgetStatePropertyAll(Size(250.0, 50.0)),
               ),
               onPressed: ()=> exit(0),
-              child: Text('Exit', style: elevatedButtonText.copyWith(color: blackColor100)),
+              child: Text('Exit', style: elevatedButtonText),
             ),
           ],
         ),
