@@ -1,31 +1,19 @@
 import 'package:flutter/material.dart';
 
-import 'package:business_layer/business_layer.dart';
-
 import 'package:spirit/pages/local_auth_page/local_widget/button_pad.dart';
 
 class PinPad extends StatelessWidget {
-  const PinPad({super.key, this.height, this.width, required this.digits, required this.pincode, this.biometric, required this.onChange, this.onBiometric});
+  const PinPad({super.key, this.height, this.width,
+    this.biometric, required this.onChange, this.onAction1, this.onAction2,
+  });
 
   final double? height;
   final double? width;
 
-  final int digits;
-  final String pincode;
   final bool? biometric;
-  final void Function(String) onChange;
-  final VoidCallback? onBiometric;
-
-  void addPin(int cod) {
-    if (pincode.length < digits)
-      onChange(pincode.toString() + cod.toString());
-  }
-
-  void delPin() {
-    if (pincode.length > 0) {
-      onChange(pincode.substring(0, pincode.length - 1));
-    }
-  }
+  final void Function(int) onChange;
+  final VoidCallback? onAction1;
+  final VoidCallback? onAction2;
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +27,9 @@ class PinPad extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ButtonPad(text: '1', onPressed: () => addPin(1)),
-                  ButtonPad(text: '2', onPressed: () => addPin(2)),
-                  ButtonPad(text: '3', onPressed: () => addPin(3)),
+                  ButtonPad(text: '1', onPressed: () => onChange(1)),
+                  ButtonPad(text: '2', onPressed: () => onChange(2)),
+                  ButtonPad(text: '3', onPressed: () => onChange(3)),
                 ],
               ),
             ),
@@ -49,9 +37,9 @@ class PinPad extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ButtonPad(text: '4', onPressed: () => addPin(4)),
-                  ButtonPad(text: '5', onPressed: () => addPin(5)),
-                  ButtonPad(text: '6', onPressed: () => addPin(6)),
+                  ButtonPad(text: '4', onPressed: () => onChange(4)),
+                  ButtonPad(text: '5', onPressed: () => onChange(5)),
+                  ButtonPad(text: '6', onPressed: () => onChange(6)),
                 ],
               ),
             ),
@@ -59,9 +47,9 @@ class PinPad extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ButtonPad(text: '7', onPressed: () => addPin(7)),
-                  ButtonPad(text: '8', onPressed: () => addPin(8)),
-                  ButtonPad(text: '9', onPressed: () => addPin(9)),
+                  ButtonPad(text: '7', onPressed: () => onChange(7)),
+                  ButtonPad(text: '8', onPressed: () => onChange(8)),
+                  ButtonPad(text: '9', onPressed: () => onChange(9)),
                 ],
               ),
             ),
@@ -69,17 +57,9 @@ class PinPad extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ButtonPad(
-                      icon: Icons.fingerprint,
-                      enable: biometric,
-                      onPressed: onBiometric,
-                      //     () async {
-                      //   bool res = await locator.get<LocalAuthController>().authUser();
-                      //   print('result: $res');
-                      // },
-                  ),
-                  ButtonPad(text: '0', onPressed: () => addPin(0)),
-                  ButtonPad(icon: Icons.backspace, onPressed: () => delPin()),
+                  ButtonPad(icon: Icons.fingerprint, enable: biometric, onPressed: onAction1),
+                  ButtonPad(text: '0', onPressed: () => onChange(0)),
+                  ButtonPad(icon: Icons.backspace, onPressed: () => onAction2),
                 ],
               ),
             ),

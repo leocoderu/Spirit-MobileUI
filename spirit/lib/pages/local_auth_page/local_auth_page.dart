@@ -27,6 +27,7 @@ class LocalAuthPage extends StatefulWidget {
 }
 
 class _LocalAuthPageState extends State<LocalAuthPage> with SingleTickerProviderStateMixin {
+  final int digits = 4;
 
   String pincode = '';
   bool   start = false;
@@ -40,18 +41,36 @@ class _LocalAuthPageState extends State<LocalAuthPage> with SingleTickerProvider
     super.initState();
   }
 
+  @override
+  void didChangeDependencies() {
+    _authBio();
+    super.didChangeDependencies();
+  }
+
+  void _authBio() async {
+    if(await locator.get<LocalAuthController>().authUser()) {
+      MyFluroRouter.router.navigateTo(context, '/auth'); //Goto Next Screen
+    }
+  }
+
   void _getBiometric() async {
-    bool bio = await locator.get<LocalAuthController>().checkBio();
+    final bool bio = await locator.get<LocalAuthController>().checkBio();
     setState(() {
       biometric = bio;
     });
   }
 
+  void addPin(int cod) {
+    if (pincode.length < digits) setState(() => pincode += cod.toString());
+  }
+
+  void delPin() {
+    if (pincode.length > 0) setState(() => pincode = pincode.substring(0, pincode.length - 1));
+  }
+
   @override
   Widget build(BuildContext context) {
-    final int digits = 4;
-
-    final bool _orientation = MediaQuery.of(context).orientation == Orientation.portrait;
+    final _orientation = MediaQuery.of(context).orientation == Orientation.portrait;
     final _width = MediaQuery.of(context).size.width;
     final _height = MediaQuery.of(context).size.height;
     final _bottom = MediaQuery.of(context).viewInsets.bottom;
@@ -108,18 +127,18 @@ class _LocalAuthPageState extends State<LocalAuthPage> with SingleTickerProvider
               child: PinPad(
                 height: 350,
                 width: 350,
-                digits: digits,
-                pincode: pincode,
                 biometric: biometric,
-                onBiometric: () async {
-                  if(await locator.get<LocalAuthController>().authUser()) {
-                    MyFluroRouter.router.navigateTo(context, '/auth'); //Goto Next Screen
-                  }
+                onAction1: () async {
+                  _authBio();
+                  // if(await locator.get<LocalAuthController>().authUser()) {
+                  //   MyFluroRouter.router.navigateTo(context, '/auth'); //Goto Next Screen
+                  // }
                 },
-                onChange: (String value) async {
-                  setState(() => pincode = value);
-                  if (value.length == digits) {
-                    if (await locator.get<LocalPinController>().checkPin(value)) {
+                onAction2: () => delPin(),
+                onChange: (int value) async {
+                  addPin(value);
+                  if (pincode.length == digits) {
+                    if (await locator.get<LocalPinController>().checkPin(pincode)) {
                       MyFluroRouter.router.navigateTo(context, '/auth'); //Goto Next Screen
                     } else { //Colorize in red and Start shake animation
                       setState(() {
