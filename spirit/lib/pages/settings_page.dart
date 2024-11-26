@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spirit/src/widgets/switch_field.dart';
 
 class SettingsPage extends StatelessWidget {
   static const routeName = '/settings';
@@ -12,9 +13,10 @@ class SettingsPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: Container(
-          alignment: Alignment.center,
-          child: Text('Settings'),
+        child: Column(
+          children: [
+            SwitchField(),
+          ],
         ),
       ),
     );

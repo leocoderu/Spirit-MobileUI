@@ -23,7 +23,7 @@ class PinScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           for(int i = 0; i < digits; i++)
-             OneField(size: ofSize, decoration: decoration, icon: value! > i ? Icons.adb : null),
+             OneField(size: ofSize, decoration: decoration, icon: value! > i ? Icons.lock : null),
         ],
       ),
     );
