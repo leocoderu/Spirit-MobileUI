@@ -12,6 +12,10 @@ void setupServices() async {
   locator.registerSingleton<LocalAuthController>(LocalAuthController());
   locator.registerSingleton<LocalAuth>(LocalAuth());
 
+  locator.registerSingleton<InfoController>(InfoController());
+  locator.registerSingleton<InfoRepo>(InfoRepo());
+
+
   //
   // locator.registerSingleton<ProductRepo>(ProductRepo());
   // locator.registerSingleton<ProdController>(ProdController());

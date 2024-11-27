@@ -1,6 +1,7 @@
 export 'di/locator.dart';
 export 'controller/pin_controller.dart';
 export 'controller/local_auth_controller.dart';
+export 'controller/info_controller.dart';
 
 //export 'controller/auth_controller.dart';
 //export 'controller/prod_controller.dart';

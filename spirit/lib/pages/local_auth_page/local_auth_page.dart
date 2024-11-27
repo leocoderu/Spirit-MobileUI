@@ -43,6 +43,7 @@ class _LocalAuthPageState extends State<LocalAuthPage> with SingleTickerProvider
 
   @override
   void didChangeDependencies() {
+    //_getBiometric(); doesn't work :(((
     _authBio();
     super.didChangeDependencies();
   }
