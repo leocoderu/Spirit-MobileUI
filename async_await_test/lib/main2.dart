@@ -33,6 +33,13 @@ void methodD(){
   print('sync D');
 }
 
+//       READ:
+//! MICROTASK: 'microtask from main', 'microtask from B'
+//*     EVENT:   
+//?    OUTPUT: sync A, sync B start, sync C start from B, C running Future from B, sync C end from B,
+//              sync B end, sync C start from main, C running Future from main, C end of Future from main,
+//              sync C end from main, sync D, microtask from B, microtask from main
+
 // sync A
 // sync B start
 // sync C start from B
