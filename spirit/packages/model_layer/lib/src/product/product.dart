@@ -13,7 +13,7 @@
 // const _kQuantity = 'quantity'; // Double     Quantity:  1,4
 // const _kUnit = 'unit';         // BaseTable  Unit:      kd / pic. / l.
 // const _kBought = 'bought';     // bool       Bought:    true / false      // maybe Докупить / ...
-// const _kHide = 'hide';         // bool       Hide List: true / flase      // Hide or not, т.е. перенесено на экран Куплено или Нет
+// const _kHide = 'hide';         // bool       Hide List: true / false      // Hide or not, т.е. перенесено на экран Куплено или Нет
 //
 // @freezed
 // class Product with _$Product{
