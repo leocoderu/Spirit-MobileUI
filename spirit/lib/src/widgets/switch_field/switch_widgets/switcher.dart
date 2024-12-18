@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spirit/src/shared/app_colors.dart';
+import 'package:spirit/src/styles/app_colors.dart';
 class Switcher extends StatelessWidget {
   const Switcher({super.key, this.size, this.position, required this.onChange});
 

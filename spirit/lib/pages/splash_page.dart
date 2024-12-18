@@ -6,13 +6,18 @@ import 'package:flutter/material.dart';
 
 // Import Modules
 import 'package:fluro/fluro.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:business_layer/states/app_state.dart';
+import 'package:model_layer/model_layer.dart';
 
 // Import Packages
 import 'package:spirit/fluro_router.dart';
+import 'package:spirit/pages/auth_page/auth_page.dart';
 import 'package:spirit/pages/auth_page/auth_widgets/login_pass.dart';
-import 'package:spirit/src/shared/app_colors.dart';
-import 'package:spirit/src/shared/button_style.dart';
-import 'package:spirit/src/shared/font_style.dart';
+import 'package:spirit/src/styles/app_colors.dart';
+import 'package:spirit/src/styles/button_style.dart';
+import 'package:spirit/src/styles/font_style.dart';
 import 'package:spirit/src/widgets/back_ground.dart';
 import 'package:spirit/src/widgets/logo.dart';
 
@@ -119,29 +124,85 @@ class _SplashPageState extends State<SplashPage> {
             Positioned.fill(
               child: Container(
                 //color: Colors.deepOrange,
-                child: AnimatedOpacity(
-                    opacity: _opacityNextBox,
-                    duration: _duration,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            alignment: _orientation? Alignment.center : Alignment.centerRight,
-                            //color: Colors.green,
-                            child:  LoginPass(),
+                child: BlocBuilder<AppStateBloc, AppStateModel>(
+                    builder: (BuildContext context, state) {
+                      if (state.local_auth == switchState.on)
+                        return AnimatedOpacity(
+                          opacity: _opacityNextBox,
+                          duration: _duration,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  alignment: _orientation? Alignment.center : Alignment.centerRight,
+                                  //color: Colors.green,
+                                  child:  AuthPage(), //LoginPass(),
+                                ),
+                              ),
+                              if(MediaQuery.of(context).viewInsets.bottom == 0.0)
+                                TextButton(
+                                  style: textButtonStyle,
+                                  onPressed: null,
+                                  child: Text('Registration in the system', style: textButtonText),
+                                ),
+                            ],
                           ),
+                          onEnd: () {
+                            MyFluroRouter.router.navigateTo(context, '/localauth', transition: TransitionType.fadeIn); //, transitionDuration: const Duration(microseconds: 10));
+                          },
+                        );
+                      if (state.auto_login == switchState.on)
+                        return AnimatedOpacity(
+                          opacity: _opacityNextBox,
+                          duration: _duration,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  alignment: _orientation? Alignment.center : Alignment.centerRight,
+                                  //color: Colors.green,
+                                  child:  AuthPage(), //LoginPass(),
+                                ),
+                              ),
+                              if(MediaQuery.of(context).viewInsets.bottom == 0.0)
+                                TextButton(
+                                  style: textButtonStyle,
+                                  onPressed: null,
+                                  child: Text('Registration in the system', style: textButtonText),
+                                ),
+                            ],
+                          ),
+                          onEnd: () {
+                            MyFluroRouter.router.navigateTo(context, '/localauth', transition: TransitionType.fadeIn); //, transitionDuration: const Duration(microseconds: 10));
+                          },
+                        );
+                      return AnimatedOpacity(
+                        opacity: _opacityNextBox,
+                        duration: _duration,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                alignment: _orientation? Alignment.center : Alignment.centerRight,
+                                //color: Colors.green,
+                                child:  AuthPage(), //LoginPass(),
+                              ),
+                            ),
+                            if(MediaQuery.of(context).viewInsets.bottom == 0.0)
+                              TextButton(
+                                style: textButtonStyle,
+                                onPressed: null,
+                                child: Text('Registration in the system', style: textButtonText),
+                              ),
+                          ],
                         ),
-                        if(MediaQuery.of(context).viewInsets.bottom == 0.0)
-                          TextButton(
-                            style: textButtonStyle,
-                            onPressed: null,
-                            child: Text('Registration in the system', style: textButtonText),
-                          ),
-                      ],
-                    ),
-                    onEnd: () {
-                      MyFluroRouter.router.navigateTo(context, '/localauth', transition: TransitionType.fadeIn); //, transitionDuration: const Duration(microseconds: 10));
+                        onEnd: () {
+                          MyFluroRouter.router.navigateTo(context, '/home', transition: TransitionType.fadeIn); //, transitionDuration: const Duration(microseconds: 10));
+                        },
+                      );
                     },
                 ),
               ),

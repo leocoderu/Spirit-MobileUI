@@ -66,8 +66,8 @@ const TextStyle inputHint = TextStyle(
 // w200 - Light
 // w300 - Thin
 // w400 - Regular
-//      - MediumBold
-//      - SemiBold
+// w500 - MediumBold
+// w600 - SemiBold
 // w700 - Bold
 // w800 - ExtraBold
 // w900 - Black

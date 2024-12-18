@@ -8,11 +8,11 @@ import 'package:spirit/pages/local_auth_page/local_widget/pin_screen.dart';
 import 'package:spirit/fluro_router.dart';
 
 // Import Modules
-import 'package:spirit/src/shared/app_colors.dart';
-import 'package:spirit/src/shared/box_style.dart';
-import 'package:spirit/src/shared/font_style.dart';
-//import 'package:spirit/src/shared/button_style.dart';
-//import 'package:spirit/src/shared/font_style.dart';
+import 'package:spirit/src/styles/app_colors.dart';
+import 'package:spirit/src/styles/box_style.dart';
+import 'package:spirit/src/styles/font_style.dart';
+//import 'package:spirit/src/styles/button_style.dart';
+//import 'package:spirit/src/styles/font_style.dart';
 import 'package:spirit/src/widgets/back_ground.dart';
 import 'package:spirit/src/widgets/logo.dart';
 import 'package:spirit/src/widgets/shake_widgets/shake_trinity.dart';
@@ -49,7 +49,7 @@ class _LocalAuthPageState extends State<LocalAuthPage> with SingleTickerProvider
   }
 
   void _authBio() async {
-    if(await locator.get<LocalAuthController>().authUser()) {
+    if(await locator.get<LocalAuthController>().authUser('Авторизация', 'Отмена', 'Приложите палец к сенсору')) {
       MyFluroRouter.router.navigateTo(context, '/auth'); //Goto Next Screen
     }
   }
@@ -129,12 +129,7 @@ class _LocalAuthPageState extends State<LocalAuthPage> with SingleTickerProvider
                 height: 350,
                 width: 350,
                 biometric: biometric,
-                onAction1: () async {
-                  _authBio();
-                  // if(await locator.get<LocalAuthController>().authUser()) {
-                  //   MyFluroRouter.router.navigateTo(context, '/auth'); //Goto Next Screen
-                  // }
-                },
+                onAction1: () async => _authBio(),
                 onAction2: () => delPin(),
                 onChange: (int value) async {
                   addPin(value);

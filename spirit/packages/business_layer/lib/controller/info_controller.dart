@@ -5,8 +5,11 @@ import 'package:data_layer/data_layer.dart';
 
 class InfoController {
   Future<void> getInfo1(SendPort sendPort) async =>
-      await locator.get<InfoRepo.getInfo1(sendPort)>().InfoRepo.getInfo1(sendPort);
+      await locator.get<InfoRepo>().getInfo1(sendPort);
 
   Future<void> getInfo2(SendPort sendPort) async =>
       await locator.get<InfoRepo>().getInfo2(sendPort);
+
+  Future<void> getInfo3(SendPort sendPort) async =>
+      await locator.get<InfoRepo>().getInfo3(sendPort);
 }

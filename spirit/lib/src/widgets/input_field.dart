@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:spirit/src/shared/app_colors.dart';
-import 'package:spirit/src/shared/box_style.dart';
-import 'package:spirit/src/shared/font_style.dart';
+import 'package:spirit/src/styles/app_colors.dart';
+import 'package:spirit/src/styles/box_style.dart';
+import 'package:spirit/src/styles/font_style.dart';
 
 class InputField extends StatefulWidget {
   const InputField({super.key,

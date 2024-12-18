@@ -3,9 +3,9 @@ import "dart:io";
 import "package:flutter/material.dart";
 import "package:spirit/fluro_router.dart";
 
-import "package:spirit/src/shared/app_colors.dart";
-import "package:spirit/src/shared/button_style.dart";
-import "package:spirit/src/shared/font_style.dart";
+import "package:spirit/src/styles/app_colors.dart";
+import "package:spirit/src/styles/button_style.dart";
+import "package:spirit/src/styles/font_style.dart";
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home';

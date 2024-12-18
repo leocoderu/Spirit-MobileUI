@@ -6,9 +6,9 @@ import 'package:spirit/fluro_router.dart';
 // Import Modules
 import 'package:spirit/pages/auth_page/auth_widgets/finger_print.dart';
 import 'package:spirit/pages/auth_page/auth_widgets/login_pass.dart';
-import 'package:spirit/src/shared/app_colors.dart';
-import 'package:spirit/src/shared/button_style.dart';
-import 'package:spirit/src/shared/font_style.dart';
+import 'package:spirit/src/styles/app_colors.dart';
+import 'package:spirit/src/styles/button_style.dart';
+import 'package:spirit/src/styles/font_style.dart';
 import 'package:spirit/src/widgets/back_ground.dart';
 import 'package:spirit/src/widgets/logo.dart';
 

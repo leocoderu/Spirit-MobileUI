@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:spirit/src/shared/button_style.dart';
-import 'package:spirit/src/shared/font_style.dart';
+import 'package:spirit/src/styles/button_style.dart';
+import 'package:spirit/src/styles/font_style.dart';
 
 class ButtonPad extends StatelessWidget {
   const ButtonPad({super.key, this.enable, this.padding, this.icon, this.text, this.onPressed});

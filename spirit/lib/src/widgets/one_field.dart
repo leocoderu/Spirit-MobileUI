@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spirit/src/shared/box_style.dart';
+import 'package:spirit/src/styles/box_style.dart';
 
 class OneField extends StatelessWidget {
   const OneField({super.key, this.size, this.icon, this.padding, this.decoration});

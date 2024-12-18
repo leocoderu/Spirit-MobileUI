@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spirit/src/shared/app_colors.dart';
+import 'package:spirit/src/styles/app_colors.dart';
 
 ButtonStyle elevatedButtonDefaultStyle = ButtonStyle(
   padding: const WidgetStatePropertyAll(EdgeInsets.all(0.0)),
@@ -14,9 +14,7 @@ ButtonStyle elevatedButtonDefaultStyle = ButtonStyle(
   foregroundColor: const WidgetStatePropertyAll(blackColor100),
   backgroundColor: const WidgetStatePropertyAll(mainColor200),
   shape: WidgetStatePropertyAll(
-    RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10.0),
-    ),
+    RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
   ),
 );
 

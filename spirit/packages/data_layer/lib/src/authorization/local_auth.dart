@@ -13,21 +13,21 @@ class LocalAuth {
     return await _canAuthenticate() && availableBiometrics.isNotEmpty;
   }
 
-  Future<bool> authenticate() async {
+  Future<bool> authenticate(String signInTitle, String cancelButton, String localizedReason) async {
     try {
       if (!await _canAuthenticate()) return false;
 
       return await _auth.authenticate(
-        authMessages: const [
+        authMessages: [
           AndroidAuthMessages(
-            signInTitle: 'Авторизация',
-            cancelButton: 'Отмена',
+            signInTitle: signInTitle,
+            cancelButton: cancelButton,
           ),
           IOSAuthMessages(
-            cancelButton: 'Отмена',
+            cancelButton: cancelButton,
           ),
         ],
-        localizedReason: 'Приложите палец к сенсору',
+        localizedReason: localizedReason,
         options: const AuthenticationOptions(
           useErrorDialogs: true,
           stickyAuth: false,

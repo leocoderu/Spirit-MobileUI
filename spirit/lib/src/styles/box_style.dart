@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spirit/src/shared/app_colors.dart';
+import 'package:spirit/src/styles/app_colors.dart';
 
 BoxDecoration boxDefaultStyle = BoxDecoration(
   color: whiteColor100,
@@ -13,10 +13,8 @@ BoxDecoration boxDefaultStyle = BoxDecoration(
   ),
 );
 
-BoxDecoration boxErrorStyle = BoxDecoration(
-  color: whiteColor100,
+BoxDecoration boxErrorStyle = boxDefaultStyle.copyWith(
   border: Border.all(color: redColor200, width: 1),
-  borderRadius: BorderRadius.circular(10.0),
   gradient: LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
